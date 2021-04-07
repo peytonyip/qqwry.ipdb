@@ -2,13 +2,30 @@
 
 set -e
 
+chunzhen_url=http://update.cz88.net/soft/setup.zip
+innoextract_path=$(pwd)/exe_tool/innoextract
+
+
+# down
+wget $chunzhen_url
+
+# unzip
+unzip setup.zip
+chmod +x "$innoextract_path"
+ls -al "$innoextract_path"
+$innoextract_path setup.exe
+
+
+
 mkdir -p build/stand
 mkdir -p build/raw
+cp ./app/qqwry.dat ./build/.
 
-wget http://update.cz88.net/ip/copywrite.rar -4 -O build/copywrite.rar --user-agent="Mozilla/3.0 (compatible; Indy Library)"
-wget http://update.cz88.net/ip/qqwry.rar -4 -O build/qqwry.rar --user-agent="Mozilla/3.0 (compatible; Indy Library)"
 
-node src/decode.js
 node src/packer.js
 node src/packer_raw.js
+
+tar czf ./build/stand/qqwry.tar.gz ./build/stand/qqwry.ipdb
+
+
 
