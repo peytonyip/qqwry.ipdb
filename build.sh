@@ -25,7 +25,8 @@ cp ./app/qqwry.dat ./build/.
 node src/packer.js
 node src/packer_raw.js
 
-tar czf ./build/stand/qqwry.tar.gz ./build/stand/qqwry.ipdb
+cd ./build/stand/ || exit
+tar czf qqwry.tar.gz qqwry.ipdb
 
 
 
